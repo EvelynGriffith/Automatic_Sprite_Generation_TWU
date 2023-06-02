@@ -47,5 +47,5 @@ def convert():
     return converted
 
 # calling the command to use pifpaf in the terminal, so that it will run the program automatically.
-call(r"python -m openpifpaf.predict C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\silhouette.png --checkpoint shufflenetc2k16-wholebody --line-width=500 --image-output")
+call(r"python -m openpifpaf.predict C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\silhouette.png --checkpoint shufflenetv2k16-wholebody --line-width=500 --image-output")
 
