@@ -63,6 +63,6 @@ for i in folder:
 # calling the command to use pifpaf in the terminal, so that it will run the program automatically.
 command = r"python -m openpifpaf.predict C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\jesus.png --checkpoint shufflenetv2k16-wholebody --line-width=3 --image-output"
 subprocess.run(command, shell=True)
-
-
+output_path = eg.filesavebox(msg='Save file to..', default=r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\*')
+command.save(output_path)
 #TODO: Link bodypart_cropping.py to this file through a terminal run command?

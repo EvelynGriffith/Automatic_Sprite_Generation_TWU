@@ -1,8 +1,6 @@
 """This file will hopefully be able to take the body positions from pifpaf and use the numbers in the Constants.py file to crop the image
 based on the body parts that need to be harvested for the spritesheet."""
 
-#TODO: make this file generate a folder for the cropped images to go into
-
 # import copy
 # import numpy
 # import argparse
@@ -81,8 +79,10 @@ body_pose = np.array([
     [-1.4, 0.0, 2.0],   # 'left_ankle',      # 16
     [1.4, 0.0, 2.0], ])    # 'right_ankle',     # 17
 
-
-newpath = r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\new_folder_test' 
+"""This is trying to make a folder generate automatically so that I have a place to put the cropped images."""
+# Note: It generates the folder properly.
+# TODO: How are you going to get a new folder to generate with a different knowable name every time?
+newpath = r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\bodypart_cropped_image_folder' 
 if not os.path.exists(newpath):
     os.makedirs(newpath)
 
