@@ -89,9 +89,9 @@ if not os.path.exists(newpath):
     os.makedirs(newpath)
 
 """Adding the bones to the image...maybe :)"""
-command = r"python -m openpifpaf.predict C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\jesus.png --checkpoint shufflenetv2k16-wholebody --line-width=3 --image-output"
+command = r"python -m openpifpaf.predict C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\bodypart_cropped_image_folder\new_image.png --checkpoint shufflenetv2k16-wholebody --line-width=3 --image-output"
 subprocess.run(command, shell=True)
-output_path = eg.filesavebox(msg='Save file to..', default=r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\bodypart_cropped_image_folder/image_with_bones.png')
+output_path = eg.filesavebox(msg='Save file to..', default=r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\bodypart_cropped_image_folder\jesus.png')
 
 # command.save(output_path)
 
@@ -100,24 +100,26 @@ import geopandas as gpd
 from shapely.geometry import Point
 import matplotlib.pyplot as plt
 
+with open(r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\bodypart_cropped_image_folder\new_image.png.predictions.jpeg') as image:
 # Generate some sample data 
-p1 = Point((body_pose[10]))
-# p2 = Point(body_pose[10])
-points = gpd.GeoSeries([p1])
+    p1 = Point((body_pose[10]))
+    # p2 = Point(body_pose[10])
+    points = gpd.GeoSeries([p1])
 
-# Buffer the points using a square cap style
-# Note cap_style: round = 1, flat = 2, square = 3
-buffer = points.buffer(2, cap_style = 3)
+    # Buffer the points using a square cap style
+    # Note cap_style: round = 1, flat = 2, square = 3
+    buffer = points.buffer(2, cap_style = 3)
 
-# Plot the results
-fig, ax1 = plt.subplots()
-buffer.boundary.plot(ax=ax1, color = 'slategrey')
-points.plot(ax = ax1, color = 'red')
+    # Plot the results
+    fig, ax1 = plt.subplots()
+    buffer.boundary.plot(ax=ax1, color = 'slategrey')
+    points.plot(ax = ax1, color = 'red')
+    print(fig, ax1)
 
 
 # Opens a image in RGB mode
 # #TODO: figure out how to make this image anything that can be picked out
-image = Image.open(r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\jesus.png')
+# image = Image.open(r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\jesus.png')
  
 # # Size of the image in pixels (size of original image)
 # # (This is not mandatory)
@@ -133,9 +135,9 @@ image = Image.open(r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_T
 # bottom = 3 * height / 2
  
 # Cropped image of above dimension
-output_path = eg.filesavebox(msg='Save file to..', default=r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\bodypart_cropped_image_folder\new_image.png')
-# (It will not change original image)
-# im1 = image.crop((left, top, right, bottom))
-# Shows the image in image viewe
-image.show()
-image.save(output_path)
+# output_path = eg.filesavebox(msg='Save file to..', default=r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\bodypart_cropped_image_folder\new_image.png')
+# # (It will not change original image)
+# # im1 = image.crop((left, top, right, bottom))
+# # Shows the image in image viewe
+# image.show()
+# image.save(output_path)
