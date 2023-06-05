@@ -11,6 +11,7 @@ import numpy as np
 # import openpifpaf
 import os
 from PIL import Image
+import easygui as eg
 # from openpifpaf.plugins.coco import CocoDataset as Coco
 # from .wholebody_metric import WholebodyMetric
 # from .constants import (
@@ -92,19 +93,20 @@ im = Image.open(r"C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\
 # Size of the image in pixels (size of original image)
 # (This is not mandatory)
 width, height = im.size
- 
+
 # Setting the points for cropped image
-left = [-1.75 - 0.5, 4.2 + 0.5, 2.0] #<-- attempting to use bodypt recognition to identify cropping path.
+# left = [-1.75 - 0.5, 4.2 + 0.5, 2.0] #<-- attempting to use bodypt recognition to identify cropping path.
 #TODO: You may have to figure out how to get the general area of the body part that you're trying to crop based on these coordinates
 # how could you do this mathematically speaking???
-top = [-1.75 - 0.5, 4.2 + 0.5, 2.0]
-right = [-1.4, 8.0, 2.0]
-bottom = [-1.75 - 0.4, 6.2 + 0.2, 2.0]
+left = 100
+top = height / 4
+right = 164
+bottom = 3 * height / 4
  
 # Cropped image of above dimension
+output_path = eg.filesavebox(msg='Save file to..', default=r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\bodypart_cropped_image_folder\new_image.png')
 # (It will not change original image)
 im1 = im.crop((left, top, right, bottom))
- 
 # Shows the image in image viewer
 im1.show()
-
+im1.save(output_path)
