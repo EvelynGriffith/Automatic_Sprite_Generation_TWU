@@ -3,7 +3,7 @@ pifpaf on it."""
 from rembg import remove
 from PIL import Image
 import easygui as eg
-from subprocess import call
+import subprocess
 import glob
 import os
 import cv2
@@ -44,11 +44,25 @@ print(latest_image)
 
 """converts the most recent png image to a jpg so pifpaf can process it."""
 # TODO: convert the png images to .jpg for the pifpaf functions.
-img_png = cv2.imread(max((glob.glob(r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs')), key=os.path.getmtime))
-print(img_png)
-# TODO: get the below code to work.
-converted = cv2.imwrite('modified.jpg', img_png, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
+# img_png = cv2.imread(max((glob.glob(r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs')), key=os.path.getmtime))
+# print(img_png)
+folder = open(r'C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs')
+# # TODO: get the below code to work.
+for i in folder:
+    # TODO: get this jpg to be able to be saved.
+    # path = r"C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\file.jpg"
+    # assert os.path.isfile(path)
+    # with open(path, "r") as f:
+    #     pass
+    im = Image.open(folder[i])
+    rgb_im = im.convert('RGB')
+    rgb_im.save()
+    
 
+#TODO: get the call to the terminal command to work.
 # calling the command to use pifpaf in the terminal, so that it will run the program automatically.
-call(r"python -m openpifpaf.predict C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs --checkpoint shufflenetv2k16-wholebody --line-width=500 --image-output")
+command = r"python -m openpifpaf.predict C:\Users\gforc\Automatic_Sprite_Generation_TWU\openpifpaf_TWU\docs\jesus.png --checkpoint shufflenetv2k16-wholebody --line-width=3 --image-output"
+subprocess.run(command, shell=True)
 
+
+#TODO: Link bodypart_cropping.py to this file through a terminal run command?
